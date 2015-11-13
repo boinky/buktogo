@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name">BuktoGo</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_display_result">DisplayResult</string>
+    <string name="imgdesc">imgdesc</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="place">
+        <item>Baungon</item>
+        <item>Cabanglasan</item>
+        <item>Damulog</item>
+        <item>Dangcagan</item>
+        <item>Don Carlos</item>
+        <item>Impasug-ong</item>
+        <item>Kadingilan</item>
+        <item>Kalilangan</item>
+        <item>Kibawe</item>
+        <item>Lantapan</item>
+        <item>Libona</item>
+        <item>Malaybalay</item>
+        <item>Malitbog</item>
+        <item>Manolo Fortich</item>
+        <item>Pangantucan</item>
+        <item>Quezon</item>
+        <item>San Fernando</item>
+        <item>Sumilao</item>
+        <item>Talakag</item>
+        <item>Valencia</item>
+    </string-array>
+
+    <string-array name="description">
+        <item>Baungon</item>
+        <item>Cabanglasan</item>
+        <item>Damulog</item>
+        <item>Dangcagan</item>
+        <item>Don Carlos</item>
+        <item>Impasug-ong</item>
+        <item>Kadingilan</item>
+        <item>Kalilangan</item>
+        <item>Kibawe</item>
+        <item>Lantapan</item>
+        <item>Libona</item>
+        <item>Malaybalay</item>
+        <item>Malitbog</item>
+        <item>Manolo Fortich</item>
+        <item>Pangantucan</item>
+        <item>Quezon</item>
+        <item>San Fernando</item>
+        <item>Sumilao</item>
+        <item>Talakag</item>
+        <item>Valencia</item>
+    </string-array>
+
+
+
+
+    <array name="icons">
+        <item>@drawable/adventure</item>
+        <item>@drawable/hotel</item>
+        <item>@drawable/map</item>
+        <item>@drawable/places</item>
+        <item>@drawable/restaurant</item>
+    </array>
+</resources>
