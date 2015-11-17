@@ -21,7 +21,6 @@ public class CustomAdapter extends BaseAdapter {
     CustomAdapter(Context context, List<RowItem> rowItem) {
         this.context = context;
         this.rowItem = rowItem;
-
     }
 
     @Override
@@ -53,7 +52,6 @@ public class CustomAdapter extends BaseAdapter {
         TextView txtDescription = (TextView) convertView.findViewById(R.id.description);
 
         RowItem row_pos = rowItem.get(position);
-        // setting the image resource and title
         imgIcon.setImageResource(row_pos.getIcon());
         txtTitle.setText(row_pos.getTitle());
         txtDescription.setText(row_pos.getDescription());
