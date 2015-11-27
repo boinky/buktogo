@@ -1,26 +1,23 @@
 package com.example.android.buktogo;
 
-import java.util.ArrayList;
-import java.util.List;
 import android.app.ListFragment;
-import android.content.res.TypedArray;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.mapswithme.maps.api.MWMPoint;
 
 /**
  * Created by jan on 11/3/15.
  */
-public class PlacesFragment  extends ListFragment implements OnItemClickListener{
-    String[] menutitles;
-    String[] menuDescription;
-    TypedArray menuIcons;
-    CustomAdapter adapter;
-    private List<RowItem> rowItems;
+public class PlacesFragment extends ListFragment implements AdapterView.OnItemClickListener {
+    LstAdapter mLstAdapter;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -30,26 +27,41 @@ public class PlacesFragment  extends ListFragment implements OnItemClickListener
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        menutitles = getResources().getStringArray(R.array.place);
-        menuDescription = getResources().getStringArray(R.array.description);
-        menuIcons = getResources().obtainTypedArray(R.array.icons);
-        rowItems = new ArrayList<>();
-
-        for (int i = 0; i < menutitles.length; i++) {
-            RowItem items = new RowItem(menutitles[i], menuDescription[i], menuIcons.getResourceId(3, -1));
-            rowItems.add(items);
-        }
-
-        adapter = new CustomAdapter(getActivity(), rowItems);
-        setListAdapter(adapter);
+        mLstAdapter = new LstAdapter(getActivity(), List.ITEMS);
+        setListAdapter(mLstAdapter);
         getListView().setOnItemClickListener(this);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getActivity(), menutitles[position], Toast.LENGTH_SHORT).show();
+        showCityOnMWMMap(mLstAdapter.getItem(position));
     }
 
+    private void showCityOnMWMMap(List... items) {
+        MWMPoint[] points = new MWMPoint[items.length];
+        for (int i = 0; i < items.length; i++)
+            points[i] = items[i].toMWMPoint();
+
+        final String title = items.length == 1 ? items[0].getName() : "Capitals of the World";
+        //MapsWithMeApi.showPointsOnMap(getActivity(), title, points);
+        Toast.makeText(getActivity(), "value : " + items.length, Toast.LENGTH_SHORT).show();
+    }
+
+    private static class LstAdapter extends ArrayAdapter<List> {
+        //private final List[] data;
+
+        LstAdapter(Context context, List[] items) {
+            super(context, R.layout.list_item, R.id.title, items);
+            //data = items;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            final View view = super.getView(position, convertView, parent);
+            //final List item = data[position];
+            return view;
+        }
+    }
 
 
 }

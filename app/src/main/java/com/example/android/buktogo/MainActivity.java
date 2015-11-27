@@ -1,6 +1,4 @@
 package com.example.android.buktogo;
-
-
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
