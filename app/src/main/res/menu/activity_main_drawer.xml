@@ -25,7 +25,7 @@
             <item
                 android:id="@+id/mapswithme"
                 android:icon="@drawable/map"
-                android:title="MapsWithMe" />
+                android:title="Maps.me" />
         </menu>
     </item>
 

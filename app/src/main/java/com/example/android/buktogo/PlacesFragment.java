@@ -2,22 +2,21 @@ package com.example.android.buktogo;
 
 import android.app.ListFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
-
-import com.mapswithme.maps.api.MWMPoint;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Created by jan on 11/3/15.
  */
 public class PlacesFragment extends ListFragment implements AdapterView.OnItemClickListener {
     LstAdapter mLstAdapter;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,34 +33,34 @@ public class PlacesFragment extends ListFragment implements AdapterView.OnItemCl
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        showCityOnMWMMap(mLstAdapter.getItem(position));
+        sendToIntent(mLstAdapter.getItem(position));
     }
 
-    private void showCityOnMWMMap(List... items) {
-        MWMPoint[] points = new MWMPoint[items.length];
-        for (int i = 0; i < items.length; i++)
-            points[i] = items[i].toMWMPoint();
-
-        final String title = items.length == 1 ? items[0].getName() : "Capitals of the World";
-        //MapsWithMeApi.showPointsOnMap(getActivity(), title, points);
-        Toast.makeText(getActivity(), "value : " + items.length, Toast.LENGTH_SHORT).show();
+    private void sendToIntent(List... items) {
+        Intent intent = new Intent(getActivity(), SampleNextPage.class);
+        intent.putExtra("passId", items[0].getId());
+//        intent.putExtra("passDescription", items[0].getDescription());
+        startActivity(intent);
+//        Toast.makeText(getActivity(), "value : " + items[0], Toast.LENGTH_SHORT).show();
     }
 
     private static class LstAdapter extends ArrayAdapter<List> {
-        //private final List[] data;
+        private final List[] data;
 
         LstAdapter(Context context, List[] items) {
             super(context, R.layout.list_item, R.id.title, items);
-            //data = items;
+            data = items;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             final View view = super.getView(position, convertView, parent);
-            //final List item = data[position];
+            final TextView subText = (TextView) view.findViewById(R.id.description);
+            final ImageView icon = (ImageView) view.findViewById(R.id.icon);
+            final List list = data[position];
+            subText.setText(list.getDescription());
+            icon.setImageResource(R.drawable.places);
             return view;
         }
     }
-
-
 }

@@ -2,9 +2,9 @@ package com.example.android.buktogo;
 
 
 import android.app.ListFragment;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +49,8 @@ public class HotelsFragment extends ListFragment implements AdapterView.OnItemCl
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent (view.getContext(), SecondPage.class);
+        view.getContext().startActivity(intent);
         Toast.makeText(getActivity(), menutitles[position], Toast.LENGTH_SHORT).show();
     }
 }
